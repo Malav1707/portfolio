@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Malav Sheth — Computer Science Engineer</title>
+<meta name="description" content="Portfolio and resume of Malav Sheth — Computer Science Engineering student. Projects, skills, certificates and achievements." />
+
+<!-- ==================================================================
+     HOW TO CUSTOMIZE
+     1. Search for "EDIT:" — every place you must change text.
+     2. PROFILE PHOTO: save your photo as  photo.jpg  next to this file.
+        (Square photo works best — e.g. 800x800px. If the file is
+         missing, your initials show instead automatically.)
+     3. CERTIFICATES: edit the CERTIFICATES list in the <script> at the
+        bottom. Put certificate files in a folder named  certs/
+     4. RESUME: put your resume PDF next to this file, named  resume.pdf
+     ================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@300;400;600&display=swap" rel="stylesheet" />
+
+<style>
+/* =========================================================
+   THEME
+   Palette: "Ayu Dark" editor syntax colours — ink background,
+   phosphor-amber keywords, signal-blue functions, string-green.
+   Type:  Chakra Petch  → display (angular, engineered, technical)
+          JetBrains Mono→ code / labels / UI chrome
+          Sora          → body copy (geometric, clean, readable)
+   ========================================================= */
+:root{
+  --bg:#0A0E14; --bg-soft:#0D1320; --bg-raise:#121A2A; --line:#1E2A3D;
+  --text:#D9E0EE; --muted:#7D8CA6;
+  --amber:#FFB454; --blue:#59C2FF; --green:#AAD94C; --red:#F07178; --violet:#B77EE0;
+  --radius:10px;
+  --display:'Chakra Petch',sans-serif;
+  --body:'Sora',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-weight:300;font-size:16px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-1;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;opacity:.15;
+  mask-image:radial-gradient(ellipse at 50% 0%,black 0%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 0%,black 0%,transparent 75%);
+}
+::selection{background:var(--amber);color:#0A0E14}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ---------------- NAV ---------------- */
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,14,20,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:-.02em;color:var(--text)}
+.logo .dollar{color:var(--green)}
+.logo .tilde{color:var(--amber)}
+nav ul{display:flex;list-style:none;gap:2px}
+nav a{font-family:var(--mono);font-size:12.5px;color:var(--muted);padding:8px 12px;border-radius:6px;display:block;border:1px solid transparent;transition:.2s}
+nav a:hover{color:var(--amber);text-decoration:none;background:var(--bg-raise);border-color:var(--line)}
+nav a .ext{color:var(--line)}
+nav a:hover .ext{color:var(--amber)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);font-family:var(--mono);font-size:12.5px;padding:8px 12px;border-radius:6px;cursor:pointer}
+
+/* ---------------- HERO ---------------- */
+.hero{padding:132px 0 80px}
+.terminal{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 90px rgba(0,0,0,.55);overflow:hidden;position:relative}
+.terminal::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 3px)}
+.term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--bg-raise)}
+.dot{width:11px;height:11px;border-radius:50%}
+.dot.r{background:var(--red)}.dot.y{background:var(--amber)}.dot.g{background:var(--green)}
+.term-title{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:8px}
+
+.hero-grid{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;padding:44px 44px 48px;position:relative;z-index:1}
+.prompt-line{font-family:var(--mono);font-size:13.5px;color:var(--muted);margin-bottom:16px}
+.prompt-line .green{color:var(--green)}
+.prompt-line .amber{color:var(--amber)}
+
+/* name — display face, tight, with a glitch on hover */
+#typed-name{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(2.5rem,6.2vw,4.4rem);line-height:1;letter-spacing:-.025em;
+  text-transform:uppercase;
+  background:linear-gradient(105deg,#fff 0%,var(--text) 40%,var(--amber) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  min-height:1.05em;position:relative;display:inline-block;cursor:default;
+}
+#typed-name .cursor{display:inline-block;width:.5em;height:.86em;background:var(--amber);vertical-align:-.02em;margin-left:8px;animation:blink 1s steps(1) infinite;-webkit-text-fill-color:initial}
+@keyframes blink{50%{opacity:0}}
+#typed-name:hover{animation:glitch .32s steps(2) 2}
+@keyframes glitch{
+  0%{text-shadow:none;transform:none}
+  25%{text-shadow:-3px 0 var(--red),3px 0 var(--blue);transform:translateX(1px)}
+  50%{text-shadow:3px 0 var(--red),-3px 0 var(--blue);transform:translateX(-1px)}
+  75%{text-shadow:-2px 0 var(--violet),2px 0 var(--green)}
+  100%{text-shadow:none;transform:none}
+}
+.hero-role{margin-top:16px;font-family:var(--mono);font-weight:500;font-size:clamp(.9rem,2vw,1.05rem);color:var(--amber);letter-spacing:.01em}
+.hero-role .sep{color:var(--line);margin:0 8px}
+.hero-role .b{color:var(--blue)}
+.hero-sub{margin-top:20px;max-width:540px;color:var(--muted);font-size:15.5px;line-height:1.8}
+.hero-actions{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:13.5px;font-weight:500;padding:12px 20px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);cursor:pointer;transition:transform .16s,box-shadow .16s,background .2s,border-color .2s}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-primary{background:var(--amber);color:#0A0E14;border-color:var(--amber);font-weight:700}
+.btn-primary:hover{box-shadow:0 10px 28px rgba(255,180,84,.3)}
+.btn-ghost{background:transparent;color:var(--text)}
+.btn-ghost:hover{background:var(--bg-raise);border-color:var(--amber);color:var(--amber)}
+
+/* ===== SIGNATURE ELEMENT: the ID-badge photo ===== */
+.badge{position:relative;width:260px;margin:0 auto}
+.photo-frame{
+  position:relative;aspect-ratio:1;border-radius:50%;
+  padding:10px;background:var(--bg-raise);
+  box-shadow:0 0 0 1px var(--line),0 0 60px rgba(255,180,84,.14);
+}
+/* rotating dashed scanner ring */
+.photo-frame::before{
+  content:"";position:absolute;inset:-8px;border-radius:50%;
+  border:1.5px dashed var(--amber);opacity:.55;
+  animation:spin 22s linear infinite;
+}
+/* counter-rotating thin ring */
+.photo-frame::after{
+  content:"";position:absolute;inset:-20px;border-radius:50%;
+  border:1px solid var(--line);border-top-color:var(--blue);border-right-color:var(--blue);
+  animation:spin 9s linear infinite reverse;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.photo-mask{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:var(--bg);border:1px solid var(--line)}
+.photo-mask img{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.06);transition:filter .45s ease,transform .45s ease}
+.badge:hover .photo-mask img{filter:grayscale(0) contrast(1);transform:scale(1.05)}
+/* fallback initials if photo.jpg is missing */
+.photo-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:3.4rem;color:var(--amber);letter-spacing:.02em}
+/* sweeping scanline across the photo */
+.photo-mask .sweep{
+  position:absolute;left:0;right:0;height:22%;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(89,194,255,.16),transparent);
+  animation:sweep 4.5s ease-in-out infinite;
+}
+@keyframes sweep{0%{top:-25%}100%{top:105%}}
+/* corner brackets — the "targeting" frame */
+.bracket{position:absolute;width:26px;height:26px;border:2px solid var(--amber);opacity:.75}
+.bracket.tl{top:-6px;left:-6px;border-right:0;border-bottom:0}
+.bracket.tr{top:-6px;right:-6px;border-left:0;border-bottom:0}
+.bracket.bl{bottom:-6px;left:-6px;border-right:0;border-top:0}
+.bracket.br{bottom:-6px;right:-6px;border-left:0;border-top:0}
+/* status pill under photo */
+.status{
+  margin-top:26px;display:flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--mono);font-size:11.5px;color:var(--green);
+  background:rgba(170,217,76,.07);border:1px solid rgba(170,217,76,.28);
+  border-radius:999px;padding:7px 14px;
+}
+.status .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(170,217,76,.6);animation:pulse 1.9s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(170,217,76,0)}100%{box-shadow:0 0 0 0 rgba(170,217,76,0)}}
+
+/* stats strip */
+.hero-stats{display:flex;flex-wrap:wrap;border-top:1px solid var(--line);background:var(--bg-raise);position:relative;z-index:1}
+.stat{flex:1;min-width:130px;padding:20px 24px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat b{font-family:var(--display);font-size:1.75rem;font-weight:700;color:var(--blue);display:block;line-height:1.2}
+.stat span{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em}
+
+/* ---------------- SECTIONS ---------------- */
+section{padding:86px 0}
+.sec-head{margin-bottom:46px}
+.eyebrow{font-family:var(--mono);font-size:12.5px;color:var(--green);display:block;margin-bottom:10px;letter-spacing:.03em}
+.eyebrow::before{content:"// ";color:var(--muted)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,4.4vw,2.7rem);letter-spacing:-.015em;text-transform:uppercase;line-height:1.1}
+h2 .path{color:var(--amber);font-weight:500}
+.sec-head p{color:var(--muted);margin-top:12px;max-width:620px;font-size:15.5px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------------- ABOUT ---------------- */
+.about-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:start}
+.about-text p{margin-bottom:16px;color:var(--text);font-size:15.5px}
+.about-text p b{color:var(--amber);font-weight:600}
+.code-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);font-family:var(--mono);font-size:13px;line-height:1.95;padding:24px;overflow-x:auto}
+.code-card .k{color:var(--violet)}
+.code-card .s{color:var(--green)}
+.code-card .f{color:var(--blue)}
+.code-card .c{color:var(--muted)}
+.code-card .n{color:var(--amber)}
+
+/* ---------------- EDUCATION ---------------- */
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--amber),var(--line))}
+.commit{position:relative;padding-bottom:36px}
+.commit:last-child{padding-bottom:0}
+.commit::before{content:"";position:absolute;left:-31px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--amber)}
+.commit-hash{font-family:var(--mono);font-size:11.5px;color:var(--blue);letter-spacing:.02em}
+.commit h3{font-family:var(--display);font-weight:600;font-size:1.25rem;margin:5px 0 2px;letter-spacing:-.005em}
+.commit .where{color:var(--amber);font-size:13.5px;font-family:var(--mono)}
+.commit .meta{color:var(--muted);font-size:14px;margin-top:6px}
+
+/* ---------------- SKILLS ---------------- */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.skill-box{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:border-color .2s,transform .2s}
+.skill-box:hover{border-color:var(--amber);transform:translateY(-3px)}
+.skill-box h3{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--blue);margin-bottom:16px;display:flex;align-items:center;gap:9px;letter-spacing:.02em}
+.skill-box h3 svg{width:16px;height:16px;stroke:var(--amber);flex-shrink:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:12px;color:var(--text);background:var(--bg-raise);border:1px solid var(--line);padding:5px 11px;border-radius:999px;transition:.2s}
+.chip:hover{border-color:var(--amber);color:var(--amber)}
+
+/* ---------------- PROJECTS ---------------- */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.proj{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,border-color .2s,box-shadow .2s}
+.proj:hover{transform:translateY(-4px);border-color:var(--blue);box-shadow:0 16px 44px rgba(0,0,0,.45)}
+.proj-top{display:flex;align-items:center;justify-content:space-between;padding:11px 18px;border-bottom:1px solid var(--line);background:var(--bg-raise)}
+.proj-top .fname{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.proj-top .star{color:var(--amber)}
+.proj-body{padding:22px;flex:1;display:flex;flex-direction:column}
+.proj h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin-bottom:9px}
+.proj p{color:var(--muted);font-size:14.5px;flex:1;line-height:1.7}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.tag{font-family:var(--mono);font-size:11px;color:var(--green);background:rgba(170,217,76,.08);border:1px solid rgba(170,217,76,.25);padding:3px 9px;border-radius:5px}
+.proj .links{margin-top:18px;display:flex;gap:18px;font-family:var(--mono);font-size:12.5px}
+
+/* ---------------- CERTIFICATES ---------------- */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.cert{background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;text-align:left;padding:0;color:inherit;font:inherit;transition:transform .2s,border-color .2s}
+.cert:hover{transform:translateY(-4px);border-color:var(--amber)}
+.cert-thumb{aspect-ratio:16/10;background:var(--bg-raise);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);overflow:hidden}
+.cert-thumb img{width:100%;height:100%;object-fit:cover}
+.cert-thumb svg{width:44px;height:44px;stroke:var(--amber);opacity:.75}
+.cert-info{padding:16px 18px}
+.cert-info h3{font-family:var(--display);font-weight:600;font-size:1.02rem;line-height:1.4}
+.cert-info .issuer{color:var(--blue);font-family:var(--mono);font-size:12px;margin-top:5px}
+.cert-info .date{color:var(--muted);font-size:11.5px;font-family:var(--mono);margin-top:2px}
+.cert-badge{font-family:var(--mono);font-size:10.5px;color:var(--green);border:1px solid rgba(170,217,76,.3);border-radius:4px;padding:2px 7px;display:inline-block;margin-top:12px;background:rgba(170,217,76,.06)}
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;background:rgba(5,8,13,.92);backdrop-filter:blur(6px);padding:24px}
+.modal.open{display:flex}
+.modal-box{max-width:900px;width:100%;max-height:90vh;display:flex;flex-direction:column;background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line)}
+.modal-head h3{font-family:var(--display);font-weight:600;font-size:1.05rem}
+.modal-close{background:none;border:1px solid var(--line);color:var(--text);border-radius:6px;padding:6px 12px;font-family:var(--mono);font-size:12px;cursor:pointer}
+.modal-close:hover{border-color:var(--red);color:var(--red)}
+.modal-body{overflow:auto;padding:20px;display:flex;justify-content:center}
+.modal-body img{max-height:70vh;object-fit:contain;border-radius:8px}
+.modal-body .note{font-family:var(--mono);color:var(--muted);padding:40px;text-align:center;font-size:13px}
+
+/* ---------------- ACHIEVEMENTS ---------------- */
+.ach-list{display:grid;gap:14px}
+.ach{display:flex;gap:16px;align-items:flex-start;background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;transition:border-color .2s}
+.ach:hover{border-color:var(--green)}
+.ach .mark{font-family:var(--mono);color:var(--green);flex-shrink:0;margin-top:3px;font-size:13px}
+.ach b{color:var(--text);font-weight:600;font-family:var(--display);font-size:1.05rem}
+.ach span{color:var(--muted);font-size:14.5px}
+
+/* ---------------- CONTACT ---------------- */
+.contact-box{background:var(--bg-soft);border:1px solid var(--line);border-radius:14px;padding:52px 40px;text-align:center;position:relative;overflow:hidden}
+.contact-box::before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at 50% 120%,rgba(255,180,84,.13),transparent 55%);pointer-events:none}
+.contact-box > *{position:relative}
+.contact-box h2{margin-bottom:14px}
+.contact-box p{color:var(--muted);max-width:520px;margin:0 auto 30px}
+.contact-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;font-family:var(--mono);font-size:12px;color:var(--muted)}
+footer .red{color:var(--red)}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:38px;padding:36px 26px 40px}
+  .badge{order:-1;width:200px}
+  .photo-fallback{font-size:2.6rem}
+  .about-grid{grid-template-columns:1fr}
+  .menu-btn{display:block}
+  nav ul{display:none;position:absolute;top:60px;left:0;right:0;background:var(--bg-soft);border-bottom:1px solid var(--line);flex-direction:column;padding:10px 16px 16px;gap:2px}
+  nav ul.open{display:flex}
+  .stat{border-right:none;border-bottom:1px solid var(--line);min-width:50%}
+  section{padding:62px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="#top"><span class="dollar">$</span> <span class="tilde">~/</span>Malav</a><!-- EDIT: handle -->
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navList">menu ▾</button>
+    <nav aria-label="Main">
+      <ul id="navList">
+        <li><a href="#about">about<span class="ext">.md</span></a></li>
+        <li><a href="#education">education<span class="ext">.log</span></a></li>
+        <li><a href="#skills">skills<span class="ext">.json</span></a></li>
+        <li><a href="#projects">projects<span class="ext">/</span></a></li>
+        <li><a href="#certificates">certs<span class="ext">/</span></a></li>
+        <li><a href="#contact">contact<span class="ext">.sh</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="terminal">
+      <div class="term-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="term-title">portfolio — bash — 80×24</span>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <p class="prompt-line"><span class="green">visitor@recruiter</span>:<span class="amber">~</span>$ whoami</p>
+
+          <!-- EDIT: change data-name to your real name -->
+          <h1 id="typed-name" data-name="MALAV SHETH"><span class="cursor" aria-hidden="true"></span></h1>
+
+          <!-- EDIT: your role -->
+          <p class="hero-role">Computer Science Engineer<span class="sep">/</span><span class="b">Full-Stack Developer</span></p>
+
+          <!-- EDIT: 1–2 lines about you -->
+          <p class="hero-sub">
+            I build things with code — from web apps to algorithms. Currently pursuing my
+            B.Tech and looking for a team where I can solve real problems and keep learning.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="resume.pdf" download>⬇ MalavSheth_Resume.pdf</a>
+            <a class="btn btn-ghost" href="#projects">./view-projects</a>
+            <a class="btn btn-ghost" href="#certificates">./certificates</a>
+          </div>
+        </div>
+
+        <!-- ===== PROFILE PHOTO ===== -->
+        <div class="badge">
+          <div class="photo-frame">
+            <span class="bracket tl"></span><span class="bracket tr"></span>
+            <span class="bracket bl"></span><span class="bracket br"></span>
+            <div class="photo-mask">
+              <!-- EDIT: save your photo as photo.jpg next to index.html.
+                   If missing, the initials below show automatically. -->
+              <span class="photo-fallback" id="photoFallback">YN</span><!-- EDIT: your initials -->
+              <img id="profilePhoto" src="C:\Users\sheth\Downloads\files\me.jpeg" alt="Portrait of Malav" />
+              <span class="sweep" aria-hidden="true"></span>
+            </div>
+          </div>
+          <div class="status"><span class="pulse"></span> STATUS: OPEN TO WORK</div>
+        </div>
+      </div>
+
+      <!-- EDIT: your real numbers -->
+      <div class="hero-stats">
+        <div class="stat"><b>7.72</b><span>CGPA</span></div>
+        <div class="stat"><b>10+</b><span>PROJECTS_BUILT</span></div>
+        <div class="stat"><b>250+</b><span>PROBLEMS_SOLVED</span></div>
+        <div class="stat"><b>12</b><span>CERTIFICATIONS</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">cat about.md</span>
+      <h2><span class="path">~/</span>about</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <!-- EDIT: your story -->
+        <p>Hi! I'm a <b>Computer Science Engineering student</b> who likes turning ideas into
+        working software. It started with curiosity about how apps actually work, and grew into
+        building full projects, competing in hackathons, and going deep on data structures.</p>
+        <p>I enjoy working across the stack — clean interfaces on the front end, efficient logic
+        on the back end. Alongside coursework I keep earning <b>industry certifications</b> so my
+        skills stay current and job-ready.</p>
+        <p>Right now I'm preparing for campus placements and looking for a role where I can
+        contribute from day one while growing as an engineer.</p>
+      </div>
+      <div class="code-card reveal" aria-hidden="true">
+<pre><span class="c">// developer.js</span>
+<span class="k">const</span> <span class="f">developer</span> = {
+  <span class="n">name</span>: <span class="s">"MALAV SHETH"</span>,
+  <span class="n">degree</span>: <span class="s">"B.Tech CSE"</span>,
+  <span class="n">location</span>: <span class="s">"India"</span>,
+  <span class="n">interests</span>: [<span class="s">"web dev"</span>,
+    <span class="s">"DSA"</span>, <span class="s">"AI/ML"</span>],
+  <span class="n">openToWork</span>: <span class="k">true</span>,
+  <span class="n">coffee</span>: <span class="k">Infinity</span>
+};</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION ================= -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">git log --education</span>
+      <h2><span class="path">~/</span>education</h2>
+    </div>
+    <div class="timeline">
+      <!-- EDIT: your education -->
+      <div class="commit reveal">
+        <span class="commit-hash">commit a3f9e21 · 2023 — present</span>
+        <h3>B.Tech, Computer Science &amp; Engineering</h3>
+        <p class="where">Nirma University, Ahmedabad</p>
+        <p class="meta">CGPA 7.72/10 · Coursework: Data Structures, Operating Systems, DBMS, Computer Networks, Machine Learning, Cloud Computing</p>
+      </div>
+      <div class="commit reveal">
+        <span class="commit-hash">commit 7c2d10b · 2022 — 2023</span>
+        <h3>Higher Secondary (Class XII), Science</h3>
+        <p class="where">Sadhana Vinaymandir, Ahmedabad</p>
+        <p class="meta">72.3% · PCM with Computer Science</p>
+      </div>
+      <div class="commit reveal">
+        <span class="commit-hash">commit 19be4d4 · 2021</span>
+        <h3>Secondary (Class X)</h3>
+        <p class="where">Mount Carmel High School, Gandhidham</p>
+        <p class="meta">91.1%</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">npm list --global</span>
+      <h2><span class="path">~/</span>skills</h2>
+    </div>
+    <div class="skills-grid">
+      <!-- EDIT: your skills -->
+      <div class="skill-box reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>languages/</h3>
+        <div class="chips"><span class="chip">C++</span><span class="chip">Java</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">SQL</span></div>
+      </div>
+      <div class="skill-box reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>web-dev/</h3>
+        <div class="chips"><span class="chip">HTML/CSS</span><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Tailwind</span></div>
+      </div>
+      <div class="skill-box reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>databases/</h3>
+        <div class="chips"><span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">PostgreSQL</span></div>
+      </div>
+      <div class="skill-box reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>tools/</h3>
+        <div class="chips"><span class="chip">Git &amp; GitHub</span><span class="chip">VS Code</span><span class="chip">Linux</span><span class="chip">Postman</span><span class="chip">Figma</span></div>
+      </div>
+      <div class="skill-box reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>core-cs/</h3>
+        <div class="chips"><span class="chip">DSA</span><span class="chip">OOP</span><span class="chip">Operating Systems</span><span class="chip">DBMS</span><span class="chip">Networks</span></div>
+      </div>
+      <div class="skill-box reveal">
+        <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>soft-skills/</h3>
+        <div class="chips"><span class="chip">Teamwork</span><span class="chip">Communication</span><span class="chip">Problem Solving</span><span class="chip">Leadership</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">ls -la projects/</span>
+      <h2><span class="path">~/</span>projects</h2>
+      <p>A few things I've designed, built, and shipped.</p>
+    </div>
+    <div class="proj-grid">
+      <!-- EDIT: your projects. Copy an <article> block to add more. -->
+      <article class="proj reveal">
+        <div class="proj-top"><span class="fname">project-01.repo</span><span class="fname star">★</span></div>
+        <div class="proj-body">
+          <h3>Cloud Log Anomaly Detection System</h3>
+          <p>●	Designed a cloud-based system to detect anomalies in user logs using Isolation Forest algorithm.</p>
+<p>●	Proposed and prototyped use of Generative AI for synthetic attack simulation to improve training data quality.</p>
+<p>●	Focused on real-time threat detection in cloud infrastructure using ML-based anomaly scoring.
+</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Flask</span></div>
+          <div class="links"><a href="#">↗ live demo</a><a href="#">⌥ github</a></div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-top"><span class="fname">project-02.repo</span><span class="fname star">★</span></div>
+        <div class="proj-body">
+          <h3>Hospital Management System</h3>
+          <p>●	Designed relational database schema for managing patients, doctors, and appointments..</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">MongoDB</span></div>
+          <div class="links"><a href="#">↗ live demo</a><a href="#">⌥ github</a></div>
+        </div>
+      </article>
+      <article class="proj reveal">
+        <div class="proj-top"><span class="fname">project-03.repo</span><span class="fname star">★</span></div>
+        <div class="proj-body">
+          <h3>Recipe Management Web App</h3>
+          <p>●	Built responsive web application using HTML, CSS, and JavaScript with local storage-based CRUD operations.</p>
+<p>●	Added advanced search and sorting features for enhanced usability.
+</p>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">Canvas API</span></div>
+          <div class="links"><a href="#">↗ live demo</a><a href="#">⌥ github</a></div>
+        </div>
+      </article>
+       <article class="proj reveal">
+        <div class="proj-top"><span class="fname">project-04.repo</span><span class="fname star">★</span></div>
+        <div class="proj-body">
+          <h3>DNA Sequence Alignment</h3>
+          <p>●	Implemented Needleman-Wunsch and Smith-Waterman dynamic programming algorithms.</p>
+<p>●	Compared performance metrics and analysed sequence alignment accuracy across multiple datasets.
+</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">MongoDB</span></div>
+          <div class="links"><a href="#">↗ live demo</a><a href="#">⌥ github</a></div>
+        </div>
+      </article>
+       <article class="proj reveal">
+        <div class="proj-top"><span class="fname">project-05.repo</span><span class="fname star">★</span></div>
+        <div class="proj-body">
+          <h3>Personal Health Record System</h3>
+          <p>●	Developed Java-based system using OOP principles and file handling for secure health record management.</p>
+<p>●	Ensured robust input validation and modular system design for maintainability
+</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">MongoDB</span></div>
+          <div class="links"><a href="#">↗ live demo</a><a href="#">⌥ github</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATES ================= -->
+<section id="certificates">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">open certs/ --verified</span>
+      <h2><span class="path">~/</span>certificates</h2>
+      <p>Click any certificate to view it full size.</p>
+    </div>
+    <div class="cert-grid" id="certGrid"></div>
+  </div>
+</section>
+
+<!-- ================= ACHIEVEMENTS ================= -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">echo $ACHIEVEMENTS</span>
+      <h2><span class="path">~/</span>achievements</h2>
+    </div>
+    <div class="ach-list">
+      <!-- EDIT: your achievements -->
+      <div class="ach reveal"><span class="mark">[✓]</span><div><b>Winner — Smart India Hackathon (Internal Round)</b><br><span>Led a 6-member team building a civic-issue reporting platform.</span></div></div>
+      <div class="ach reveal"><span class="mark">[✓]</span><div><b>250+ problems solved on LeetCode</b><br><span>Daily practice across DSA topics; contest rating 1500+.</span></div></div>
+      <div class="ach reveal"><span class="mark">[✓]</span><div><b>Technical Team Member — College Coding Club</b><br><span>Ran Git and web-development workshops for 100+ juniors.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <span class="eyebrow">./contact.sh --run</span>
+      <h2>Let's build something</h2>
+      <p>I'm actively looking for internship and placement opportunities. If my profile fits your team, I'd love to talk.</p>
+      <div class="contact-links">
+        <!-- EDIT: your links -->
+        <a class="btn btn-primary" href="mailto:yourname@email.com">✉ malavsheth005@gmail.com</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/malav-sheth-6276692b5</a>
+        <a class="btn btn-ghost" href="https://github.com/yourusername" target="_blank" rel="noopener">github.com/Malav1707</a>
+        <a class="btn btn-ghost" href="tel:+911234567890">☎ +91 9574479229</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><p>designed &amp; built with <span class="red">♥</span> by Malav · © 2026 · exit code 0</p></div>
+</footer>
+
+<div class="modal" id="certModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="modalTitle">Certificate</h3>
+      <button class="modal-close" id="modalClose">esc ✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ==========================================================
+   CERTIFICATES — EDIT THIS LIST
+   1. Make a folder named  certs/  next to index.html
+   2. Put your certificate images (.jpg/.png) or PDFs inside
+   3. Add one entry per certificate below.
+      file: path to the file, or "" if you don't have it yet
+   ========================================================== */
+const CERTIFICATES = [
+  { title:"Make Agentic AI Work For You", issuer:"IBM SkillsBuild", date:"19Jun 2026", file:"make-agentic-ai-work-for-you.png" },
+  { title:"AWS Fundamentals", issuer:"SimpliLearn", date:"26 Mar 2026", file:"aws fundamentals.png" },
+  { title:"AWS Academy Cloud Foundations Trainee", issuer:"AWS Academy", date:"May 2026", file:"aws-academy-graduate-cloud-foundations-training-bad.png" },
+  { title:"Data Structures & Algorithms", issuer:"GeeksforGeeks", date:"Aug 2025", file:"" }
+];
+
+/* ---- profile photo fallback (shows initials if photo.jpg missing) ---- */
+const photo = document.getElementById('profilePhoto');
+photo.addEventListener('error', () => { photo.style.display = 'none'; });
+
+/* ---- scroll reveal ---- */
+var io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---- render certificates ---- */
+const ICON = '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"/></svg>';
+const grid = document.getElementById('certGrid');
+
+CERTIFICATES.forEach(c => {
+  const isPdf = (c.file || '').toLowerCase().endsWith('.pdf');
+  const btn = document.createElement('button');
+  btn.className = 'cert reveal';
+  btn.setAttribute('aria-label', 'View certificate: ' + c.title);
+
+  const thumb = document.createElement('div');
+  thumb.className = 'cert-thumb';
+  if (c.file && !isPdf) {
+    const img = document.createElement('img');
+    img.src = c.file; img.alt = c.title + ' certificate'; img.loading = 'lazy';
+    img.addEventListener('error', () => { thumb.innerHTML = ICON; });
+    thumb.appendChild(img);
+  } else {
+    thumb.innerHTML = ICON;
+  }
+
+  const info = document.createElement('div');
+  info.className = 'cert-info';
+  info.innerHTML = '<h3></h3><div class="issuer"></div><div class="date"></div><span class="cert-badge">✓ verified</span>';
+  info.querySelector('h3').textContent = c.title;
+  info.querySelector('.issuer').textContent = c.issuer;
+  info.querySelector('.date').textContent = c.date;
+
+  btn.appendChild(thumb); btn.appendChild(info);
+  btn.addEventListener('click', () => openCert(c));
+  grid.appendChild(btn);
+  io.observe(btn);
+});
+
+/* ---- modal ---- */
+const modal = document.getElementById('certModal');
+const modalBody = document.getElementById('modalBody');
+const modalTitle = document.getElementById('modalTitle');
+
+function openCert(c){
+  if (c.file && c.file.toLowerCase().endsWith('.pdf')) { window.open(c.file, '_blank'); return; }
+  modalTitle.textContent = c.title;
+  modalBody.innerHTML = '';
+  if (c.file) {
+    const img = document.createElement('img');
+    img.src = c.file; img.alt = c.title + ' certificate';
+    modalBody.appendChild(img);
+  } else {
+    const p = document.createElement('p');
+    p.className = 'note';
+    p.textContent = '// certificate file not uploaded yet — add it to the certs/ folder and update the list';
+    modalBody.appendChild(p);
+  }
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCert(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('modalClose').addEventListener('click', closeCert);
+modal.addEventListener('click', e => { if (e.target === modal) closeCert(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCert(); });
+
+/* ---- typing animation ---- */
+const nameEl = document.getElementById('typed-name');
+const fullName = nameEl.dataset.name;
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (reduced) {
+  nameEl.innerHTML = fullName + '<span class="cursor" aria-hidden="true"></span>';
+} else {
+  let i = 0;
+  (function type(){
+    if (i <= fullName.length) {
+      nameEl.innerHTML = fullName.slice(0, i) + '<span class="cursor" aria-hidden="true"></span>';
+      i++; setTimeout(type, 90);
+    }
+  })();
+}
+
+/* ---- mobile menu ---- */
+const menuBtn = document.getElementById('menuBtn');
+const navList = document.getElementById('navList');
+menuBtn.addEventListener('click', () => {
+  const open = navList.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', open);
+});
+navList.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => { navList.classList.remove('open'); menuBtn.setAttribute('aria-expanded','false'); })
+);
+</script>
+</body>
+</html>
